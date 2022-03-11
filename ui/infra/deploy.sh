@@ -1,3 +1,3 @@
 #!/bin/sh
 
-kubectl apply -f ./ui/deployment.yml
+kubectl apply -f deployment.yml

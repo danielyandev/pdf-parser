@@ -1,5 +1,8 @@
 import express from "express";
+const cors = require("cors");
+
 const app = express();
+app.use(cors())
 
 // Constants
 const PORT: number = 8080;
