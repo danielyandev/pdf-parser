@@ -1,6 +1,8 @@
 import express from "express";
 const app = express();
-const port = 8080;
+
+// Constants
+const PORT: number = 80;
 
 // define a route handler for the default home page
 app.get( "/", ( req, res ) => {
@@ -8,7 +10,6 @@ app.get( "/", ( req, res ) => {
 } );
 
 // start the express server
-app.listen( port, () => {
-    // tslint:disable-next-line:no-console
-    console.log( `server started at http://localhost:${ port }` );
-} );
+app.listen(PORT, () => {
+    console.log(`Running on http://localhost:${PORT}`);
+});
