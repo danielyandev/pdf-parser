@@ -7,15 +7,39 @@ start-ui:
 start-tika:
 	cd ./apache-tika && make start
 
+stop-api:
+	cd ./api && make stop
+
+stop-ui:
+	cd ./ui && make stop
+
+stop-tika:
+	cd ./apache-tika && make stop
+
 up-api:
 	cd ./api && make up && cd ../
 
 up-ui:
 	cd ./ui && make up && cd ../
 
+kill-port-forward:
+	pkill -f "port-forward"
+
+port-forward-api:
+	cd ./api && make port-forward
+
+port-forward-ui:
+	cd ./ui && make port-forward
+
+port-forward-tika:
+	cd ./apache-tika && make port-forward
+
+port-forward: kill-port-forward port-forward-api port-forward-ui port-forward-tika
+
 start: start-tika start-api start-ui
 
-up: up-api up-ui
+stop: stop-tika stop-api stop-ui
 
-port-forward:
-	pkill -f "port-forward" && ./ui/infra/port-forward.sh && ./api/infra/port-forward.sh
+restart: stop start
+
+up: up-api up-ui
