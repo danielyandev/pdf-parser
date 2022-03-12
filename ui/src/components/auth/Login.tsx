@@ -18,6 +18,7 @@ function Login() {
     e.preventDefault()
     // check if both inputs are filled
     if (Object.values(form).includes('')) {
+      NotificationManager.warning('All fields should be filled')
       return false
     }
 
