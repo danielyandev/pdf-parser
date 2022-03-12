@@ -1,0 +1,8 @@
+.toggle-password {
+    position: relative;
+    left: 92%;
+    bottom: 38px;
+    font-size: 20px;
+    color: #C4C4C4;
+    cursor: pointer;
+}
