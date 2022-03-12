@@ -16,8 +16,8 @@ COPY --from=build /ui/build .
 RUN rm /etc/nginx/conf.d/default.conf
 COPY infra/nginx/nginx.conf /etc/nginx/conf.d
 
-# Expose port 80 for HTTP Traffic
-EXPOSE 80
+# Expose port 3000 for HTTP Traffic
+EXPOSE 3000
 
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
