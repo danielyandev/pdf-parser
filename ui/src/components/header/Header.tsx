@@ -1,7 +1,17 @@
 import React from "react";
 import "./Header.css"
+import {useDispatch} from "react-redux";
+import {logout} from "../../store/actions/auth";
+import {Navigate} from "react-router-dom";
 
 function Header() {
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(logout())
+    return <Navigate to="/login" />
+  }
+
   return (
     <div className="header d-flex justify-content-between">
       <img src="/assets/images/logo.png" alt="logo" className="mx-3 mt-2"/>
@@ -17,7 +27,7 @@ function Header() {
             <span className="mx-3">Name Surname</span>
           </a>
           <ul className="dropdown-menu text-small" aria-labelledby="account-dropdown">
-            <li><a className="dropdown-item" href="#">Sign out</a></li>
+            <li><a className="dropdown-item" href="#" onClick={handleLogout}>Sign out</a></li>
           </ul>
         </div>
 

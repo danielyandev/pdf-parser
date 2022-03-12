@@ -1,13 +1,13 @@
 import {SAVE_TOKEN_FAILURE, SAVE_TOKEN_SUCCESS} from "../actions/auth/types";
 
 
-const initialState: any = {
+const initialState = {
   user: JSON.parse(localStorage.getItem('user') || "null"),
   access_token: localStorage.getItem('access_token') || null,
   refresh_token: localStorage.getItem('refresh_token') || null,
 }
 
-const authReducer: any = (state: any = initialState, action: any) => {
+const authReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
 
     case SAVE_TOKEN_SUCCESS:
