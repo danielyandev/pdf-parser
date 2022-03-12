@@ -1,7 +1,7 @@
 import React from "react";
 import PasswordInput from "../inputs/PasswordInput";
 import "./Auth.css"
-import {Link, Navigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function Login() {
   return (
