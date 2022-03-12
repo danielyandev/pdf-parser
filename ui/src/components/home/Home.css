@@ -1,0 +1,11 @@
+.home-wrapper {
+    min-height: 100vh;
+    background: #FAFCFF;
+}
+
+.upload-wrapper {
+    width: 520px;
+    height: 350px;
+    margin-top: 180px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+}
