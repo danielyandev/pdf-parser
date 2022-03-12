@@ -1,10 +1,11 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import Login from "./auth/Login";
-import Register from "./auth/Register";
-import AuthRoute from "../router/AuthRoute";
-import Home from "./Home";
-import GuestRoute from "../router/GuestRoute";
+import Login from "../auth/login/Login";
+import Register from "../auth/Register";
+import AuthRoute from "../../router/AuthRoute";
+import Home from "../home/Home";
+import GuestRoute from "../../router/GuestRoute";
+import "./App.css"
 
 function App() {
   return (

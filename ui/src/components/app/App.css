@@ -1,0 +1,15 @@
+.color-primary {
+    color: #264464 !important;
+}
+
+.form-control {
+    height: 56px;
+}
+
+.form-btn {
+    height: 50px;
+    background: #264464 !important;
+    color: #ffffff !important;
+    font-weight: 300 !important;
+    letter-spacing: 1px;
+}
