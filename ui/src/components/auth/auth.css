@@ -1,0 +1,42 @@
+.bg-image-login {
+    height: 100vh;
+    background-image: url("../../../public/assets/images/bg-login.png");
+    background-size: cover;
+}
+
+.bg-image-register {
+    height: 100vh;
+    background-image: url("../../../public/assets/images/bg-register.png");
+    background-size: cover;
+}
+
+.form-wrapper-login {
+    width: 580px;
+    height: 520px;
+    background: #ffffff;
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-wrapper-register {
+    width: 580px;
+    height: 780px;
+    background: #ffffff;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.form-header {
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+a {
+    text-decoration: none !important;
+}
