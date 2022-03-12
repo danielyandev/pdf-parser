@@ -4,13 +4,16 @@ start-api:
 start-ui:
 	cd ./ui && make start
 
+start-tika:
+	cd ./apache-tika && make start
+
 up-api:
 	cd ./api && make up && cd ../
 
 up-ui:
 	cd ./ui && make up && cd ../
 
-start: start-api start-ui
+start: start-tika start-api start-ui
 
 up: up-api up-ui
 
