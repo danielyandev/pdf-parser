@@ -1,6 +1,6 @@
 import React from "react";
 import PasswordInput from "../inputs/PasswordInput";
-import "./auth.css"
+import "./Auth.css"
 import {Link, Navigate} from "react-router-dom";
 
 function Login() {
