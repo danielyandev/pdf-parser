@@ -31,7 +31,7 @@ const login = async (req: any, res: any) => {
     const {name, surname, email} = user
     res.status(200).send({
       user: {name, surname, email},
-      accessToken: token
+      access_token: token
     })
   } catch (e: any) {
     return res.status(500).send({message: e.message})
