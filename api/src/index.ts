@@ -3,6 +3,8 @@ import AuthController  from "./controllers/AuthController"
 import {PORT} from "./config/constants"
 import {verifySignUpMiddleware} from "./middleware/VerifySignUp"
 import {connectDb} from "./config/database";
+import {verifyToken} from "./middleware/JwtAuth";
+import UploadController from "./controllers/UploadController";
 
 const cors = require("cors")
 const app = express()
@@ -22,6 +24,7 @@ app.get( "/hi", ( req: Request, res: Response ) => { res.send( "hi" ) })
 
 app.post( "/api/login", AuthController.login)
 app.post( "/api/register", [verifySignUpMiddleware], AuthController.register)
+app.post( "/api/upload", [verifyToken], UploadController.upload)
 
 // start the express server
 app.listen(PORT, () => {

@@ -5,6 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.min.js"
+import setupAxios from "./config/axios";
+
+/**
+ * Inject interceptors for axios.
+ *
+ * @see https://github.com/axios/axios#interceptors
+ */
+setupAxios()
 
 ReactDOM.render(
   <BrowserRouter>
