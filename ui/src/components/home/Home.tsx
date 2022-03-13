@@ -7,8 +7,10 @@ import ProgressBar from "../progressbar/ProgressBar";
 const {NotificationManager} = require("react-notifications");
 
 function Home() {
+  const defaultParsedHtml = '<p class="text-center">Nothing to show, please upload a file</p>'
+
   const [uploadProgress, setUploadProgress] = useState(0)
-  const [parsedFile, setParsedFile] = useState('Nothing to show, please upload a file')
+  const [parsedFile, setParsedFile] = useState(defaultParsedHtml)
 
   const onUploadProgress = (progressEvent: any) => {
     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
@@ -22,6 +24,7 @@ function Home() {
   const handleFileSelect = async (file: any) => {
     const {response, error} = await uploadFile(file, onUploadProgress)
 
+    // just to see a progressbar for some time
     setTimeout(function () {
       setUploadProgress(0)
     }, 3000)
@@ -66,9 +69,7 @@ function Home() {
         </div>
 
         <p className="color-primary fs-3">Parsed file results</p>
-        <div>
-          {parsedFile}
-        </div>
+        <div className="container d-flex flex-column justify-content-center" dangerouslySetInnerHTML={{__html: parsedFile}}/>
       </div>
 
     </div>
