@@ -13,6 +13,12 @@ export const verifySignUpMiddleware = async (req: any, res: any, next: any) => {
     })
   }
 
+  if (!req.body.agreement) {
+    return res.status(400).send({
+      message: "Please read and accept Terms of Service and Privacy Policy"
+    })
+  }
+
   if (req.body.password !== req.body.password_confirmation) {
     return res.status(400).send({
       message: "Password should be confirmed"
