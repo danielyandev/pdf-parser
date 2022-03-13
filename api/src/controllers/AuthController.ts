@@ -1,10 +1,11 @@
 import {JWT_TOKEN_SECRET_KEY} from "../config/constants"
 import {User} from "../models/User"
+import {Request, Response} from "express";
 
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
-const login = async (req: any, res: any) => {
+const login = async (req: Request, res: Response) => {
   try {
     const user: any = await User.findOne({email: req.body.email}).exec()
 
@@ -39,7 +40,7 @@ const login = async (req: any, res: any) => {
 
 }
 
-const register = async (req: any, res: any) => {
+const register = async (req: Request, res: Response) => {
   try {
     await User.create({
       name: req.body.name,

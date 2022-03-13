@@ -1,4 +1,4 @@
-import express from "express"
+import express, {Request, Response} from "express"
 import AuthController  from "./controllers/AuthController"
 import {PORT} from "./config/constants"
 import {verifySignUpMiddleware} from "./middleware/VerifySignUp"
@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // tester
-app.get( "/hi", ( req: any, res: any ) => { res.send( "hi" ) })
+app.get( "/hi", ( req: Request, res: Response ) => { res.send( "hi" ) })
 
 app.post( "/api/login", AuthController.login)
 app.post( "/api/register", [verifySignUpMiddleware], AuthController.register)
