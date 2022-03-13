@@ -1,10 +1,10 @@
 NAME = "pdf-parser-ui"
 PORT = 3000
 
-build:
+docker-build:
 	docker build -t danielyandev/$(NAME):latest .
 
-push:
+docker-push:
 	docker push danielyandev/$(NAME):latest
 
 start:
@@ -18,4 +18,6 @@ port-forward:
 
 restart: stop start
 
-up: build push restart
+update: docker-build docker-push
+
+up: update restart

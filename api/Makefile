@@ -1,13 +1,10 @@
 NAME = "pdf-parser-api"
 PORT = 8080
 
-build:
-	docker build -t danielyandev/$(NAME) .
+docker-build:
+	docker build -t danielyandev/$(NAME):latest .
 
-tag:
-	docker tag danielyandev/$(NAME) danielyandev/$(NAME):latest
-
-push:
+docker-push:
 	docker push danielyandev/$(NAME):latest
 
 start:
@@ -21,4 +18,6 @@ port-forward:
 
 restart: stop start
 
-up: build tag push restart
+update: docker-build docker-push
+
+up: update restart

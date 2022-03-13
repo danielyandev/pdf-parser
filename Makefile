@@ -22,9 +22,6 @@ up-api:
 up-ui:
 	cd ./ui && make up && cd ../
 
-kill-port-forward:
-	pkill -f "port-forward"
-
 port-forward-api:
 	cd ./api && make port-forward
 
@@ -34,7 +31,7 @@ port-forward-ui:
 port-forward-tika:
 	cd ./apache-tika && make port-forward
 
-port-forward: kill-port-forward port-forward-api port-forward-ui port-forward-tika
+port-forward: port-forward-api port-forward-ui port-forward-tika
 
 start: start-tika start-api start-ui
 
