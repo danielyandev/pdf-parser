@@ -38,10 +38,11 @@ function Register() {
       return false
     }
 
-    const {error} = await signUp(form)
+    const {response, error} = await signUp(form)
 
     if (error) {
-      NotificationManager.error('Sign Up error, please try later')
+      const message = response.data.message || 'Sign Up error, please try later'
+      NotificationManager.error(message)
       return false
     }
 
