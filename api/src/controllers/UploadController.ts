@@ -1,8 +1,12 @@
-import {Request, Response} from "express";
+import fs from "fs"
+import {uploadFile} from "../requests/apache-tika";
 
-const upload = async (req: Request, res: Response) => {
+const upload = async (req: any, res: any) => {
   try {
-    res.status(200).send('Uploaded')
+    const {response, error} = await uploadFile(fs.createReadStream(req.file.path))
+
+    res.send(response.data)
+
   } catch (e: any) {
     res.status(500).send({message: e.message})
   }

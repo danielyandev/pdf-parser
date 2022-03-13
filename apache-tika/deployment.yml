@@ -21,8 +21,8 @@ spec:
             - containerPort: 9998
           resources:
             limits:
-              memory: '128Mi'
-              cpu: '200m'
+              memory: '1Gi'
+              cpu: '400m'
 ---
 apiVersion: v1
 kind: Service
