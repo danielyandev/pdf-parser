@@ -10,7 +10,7 @@ export const verifyToken = (req: any, res: any, next: any) => {
     })
   }
 
-  // example: Bearer token.
+  // example: Bearer token
   // need to take tre 2nd part
   token = token.split(' ')[1]
   jwt.verify(token, JWT_TOKEN_SECRET_KEY, (err: any, decoded: any) => {
