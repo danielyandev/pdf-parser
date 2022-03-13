@@ -1,18 +1,29 @@
-import express from "express";
-const cors = require("cors");
+import express from "express"
+import AuthController  from "./controllers/AuthController"
+import {PORT} from "./config/constants"
+import {verifySignUpMiddleware} from "./middleware/VerifySignUp"
+import {connectDb} from "./config/database";
 
-const app = express();
+const cors = require("cors")
+const app = express()
+
+// initiate mongoDB connection
+connectDb()
+
+// allow cors
 app.use(cors())
+// parse requests of content-type - application/json
+app.use(express.json())
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }))
 
-// Constants
-const PORT: number = 8080;
+// tester
+app.get( "/hi", ( req: any, res: any ) => { res.send( "hi" ) })
 
-// define a route handler for the default home page
-app.get( "/", ( req: any, res: any ) => {
-    res.send( "hi" );
-} );
+app.post( "/api/login", AuthController.login)
+app.post( "/api/register", [verifySignUpMiddleware], AuthController.register)
 
 // start the express server
 app.listen(PORT, () => {
-    console.log(`Running on http://localhost:${PORT}`);
-});
+    console.log(`Running on http://localhost:${PORT}`)
+})
