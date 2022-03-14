@@ -23,6 +23,10 @@ spec:
             limits:
               memory: '1Gi'
               cpu: '400m'
+        - name: pdf-parser-apache-tika-nginx
+            image: danielyandev/pdf-parser-apache-tika-nginx
+            ports:
+              - containerPort: 9999
 ---
 apiVersion: v1
 kind: Service
