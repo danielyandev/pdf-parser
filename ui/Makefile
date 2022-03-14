@@ -1,3 +1,4 @@
+# Name and port should be the same as in infra/values.yaml
 NAME = "pdf-parser-ui"
 PORT = 3000
 
@@ -8,10 +9,10 @@ docker-push:
 	docker push danielyandev/$(NAME):latest
 
 start:
-	kubectl apply -f deployment.yml
+	helm install $(NAME) ./infra/helm-chart
 
 stop:
-	kubectl delete deploy $(NAME) && kubectl delete service $(NAME)-service && lsof -ti tcp:$(PORT) | xargs kill
+	helm uninstall $(NAME) && lsof -ti tcp:$(PORT) | xargs kill
 
 port-forward:
 	kubectl port-forward deployment/$(NAME) $(PORT):$(PORT) &
