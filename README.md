@@ -14,6 +14,6 @@ make port-forward
 
 After applied changes run to refresh the containers:
 ```
-make restart
+make up
 make port-forward
 ```
