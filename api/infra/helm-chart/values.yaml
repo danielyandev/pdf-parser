@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: danielyandev/pdf-parser-api
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 8080

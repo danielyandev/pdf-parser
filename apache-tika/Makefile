@@ -3,7 +3,7 @@ NAME = "pdf-parser-apache-tika"
 PORT = 9998
 
 start:
-	helm install $(NAME) ./infra
+	helm install $(NAME) ./infra/helm-chart
 
 stop:
 	helm uninstall $(NAME) && lsof -ti tcp:$(PORT) | xargs kill
