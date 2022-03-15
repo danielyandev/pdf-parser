@@ -36,61 +36,61 @@ afterAll(() => {
   connection.close()
 })
 
-describe('POST /register', () => {
+describe('AuthController', () => {
+  describe('POST /register', () => {
 
-  test('should return 200 if user is created', async () => {
+    test('should return 200 if user is created', async () => {
 
-    req.body = mockUser
+      req.body = mockUser
 
-    await register(req, res)
+      await register(req, res)
 
-    expect(res.status).toBeCalledWith(204)
-    expect(res.send).toBeCalledWith({message: "User was registered successfully!"})
+      expect(res.status).toBeCalledWith(204)
+      expect(res.send).toBeCalledWith({message: "User was registered successfully!"})
 
-  })
-
-  test('should return 400 if user is not created', async () => {
-    req.body = {}
-    await register(req, res)
-    expect(res.status).toBeCalledWith(400)
-  })
-})
-
-
-describe('POST /login', () => {
-
-  test('should return 200 and access token if user is found', async () => {
-    const {name, surname, email} = mockUser
-
-    req.body.email = mockUser.email
-    req.body.password = mockUser.password
-
-    await login(req, res)
-
-    expect(res.status).toBeCalledWith(200)
-    expect(res.send).toBeCalledWith({
-      user: {name, surname, email},
-      access_token: mockToken
     })
 
+    test('should return 400 if user is not created', async () => {
+      req.body = {}
+      await register(req, res)
+      expect(res.status).toBeCalledWith(400)
+    })
   })
 
-  test('should return 404 if user is not found', async () => {
-    req.body.email = "wrongemail"
-    req.body.password = "wrongpass"
-    await login(req, res)
-    expect(res.status).toBeCalledWith(404)
-  })
 
-  test('should return 401 if password is incorrect', async () => {
-    req.body.email = mockUser.email
-    req.body.password = 'wrongpass'
+  describe('POST /login', () => {
 
-    await login(req, res)
+    test('should return 200 and access token if user is found', async () => {
+      const {name, surname, email} = mockUser
 
-    expect(res.status).toBeCalledWith(401)
-    expect(res.send).toBeCalledWith({
-      message: "Invalid credentials"
+      req.body.email = mockUser.email
+      req.body.password = mockUser.password
+
+      await login(req, res)
+
+      expect(res.status).toBeCalledWith(200)
+      expect(res.send).toBeCalledWith({
+        user: {name, surname, email},
+        access_token: mockToken
+      })
+
+    })
+
+    test('should return 404 if user is not found', async () => {
+      req.body.email = "wrongemail"
+      req.body.password = "wrongpass"
+      await login(req, res)
+      expect(res.status).toBeCalledWith(404)
+    })
+
+    test('should return 401 if password is incorrect', async () => {
+      req.body.email = mockUser.email
+      req.body.password = 'wrongpass'
+
+      await login(req, res)
+
+      expect(res.status).toBeCalledWith(401)
+      expect(res.send).toBeCalledWith({message: "Invalid credentials"})
     })
   })
 })
