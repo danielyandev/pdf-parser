@@ -18,7 +18,7 @@ make up
 make port-forward
 ```
 
-### NOTE: the app does not work with apache-tika microservice. Just to show remaining functionality, apache tika URL was changed to an external one to process PDF files.
+# Tests
 
 #### API microservice has tests, to run them use:
 ```
@@ -31,3 +31,9 @@ npm test
 cd ./api
 npm test -- --coverage
 ```
+
+# Architecture diagram
+
+#### NOTE: the app does not work with apache-tika microservice. Just to show remaining functionality, apache tika URL was changed to an external one to process PDF files.
+
+![diagram](./diagrams/architecture-diagram.png)
