@@ -77,23 +77,24 @@ describe('AuthController', () => {
 
     })
 
-    test('should return 404 if user is not found', async () => {
+    test('should return 400 if user is not found', async () => {
       req.body = {
         email: "wrongemail" + Math.random(),
         password: "wrongpass" + Math.random(),
       }
       await login(req, res)
-      expect(res.status).toBeCalledWith(404)
+      expect(res.status).toBeCalledWith(400)
+      expect(res.send).toBeCalledWith({message: "Invalid credentials"})
     })
 
-    test('should return 401 if password is incorrect', async () => {
+    test('should return 400 if password is incorrect', async () => {
       req.body = {
         email: mockUser.email,
         password: "wrongpass"
       }
       await login(req, res)
 
-      expect(res.status).toBeCalledWith(401)
+      expect(res.status).toBeCalledWith(400)
       expect(res.send).toBeCalledWith({message: "Invalid credentials"})
     })
   })
