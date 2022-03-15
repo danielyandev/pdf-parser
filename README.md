@@ -38,4 +38,12 @@ npm test -- --coverage
 
 #### NOTE: the app does not work with apache-tika microservice. Just to show remaining functionality, apache tika URL was changed to an external one to process PDF files.
 
-![diagram](./diagrams/architecture-diagram.png)
+![architecture-diagram](./diagrams/architecture-diagram.png)
+
+# Login sequence diagram
+
+![login-sequence-diagram](./diagrams/login-sequence-diagram.png)
+
+# Register sequence diagram
+
+![register-sequence-diagram](./diagrams/register-sequence-diagram.png)
