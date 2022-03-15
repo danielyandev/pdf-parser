@@ -1,17 +1,17 @@
 /**
  * Port to run the server on
  */
-export const PORT: number = 8080
+export const APP_PORT: number|string = process.env.APP_PORT || 8080
 
 /**
  * Secret string for jwt encryption and check
  */
-export const JWT_TOKEN_SECRET_KEY: string = "some-secret-string"
+export const JWT_TOKEN_SECRET_KEY: string = process.env.JWT_TOKEN_SECRET_KEY || "some-secret-string"
 
 /**
  * URI for db connection
  */
-export const MONGO_URI: string = "mongodb+srv://trialuser:trialpassword@cluster0.uprbf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+export const MONGO_URI: string = process.env.MONGO_URI || "mongodb://localhost:27017/test";
 
 /**
  * Apache tika microservice URL
@@ -20,4 +20,4 @@ export const MONGO_URI: string = "mongodb+srv://trialuser:trialpassword@cluster0
  * TODO: change to microservice URL
  */
 // export const APACHE_TIKA_URL: string = "http://localhost:9999/tika"
-export const APACHE_TIKA_URL: string = "http://givemetext.okfnlabs.org/tika/tika"
+export const APACHE_TIKA_URL: string = process.env.APACHE_TIKA_URL || "http://givemetext.okfnlabs.org/tika/tika"
