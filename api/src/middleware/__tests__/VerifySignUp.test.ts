@@ -2,10 +2,14 @@ import {verifySignUpMiddleware} from "../VerifySignUp";
 import {mockRequest, mockResponse} from "jest-mock-req-res";
 import {connectDb} from "../../config/database";
 import {connection} from "mongoose";
+import AuthController from "../../controllers/AuthController";
+import {mockUser} from "../../config/mockData";
 
 const req = mockRequest()
 const res = mockResponse()
 const next = jest.fn()
+
+jest.setTimeout(30000)
 
 beforeAll(() => {
   connectDb()
@@ -27,7 +31,7 @@ describe('VerifySignUp middleware', () => {
     ]
 
     for (const email of invalidEmails) {
-      req.body.email = email
+      req.body = {email}
       await verifySignUpMiddleware(req, res, next)
 
       expect(res.status).toBeCalledWith(400)
@@ -36,8 +40,10 @@ describe('VerifySignUp middleware', () => {
   })
 
   test('should abort if agreement is not checked', async () => {
-    req.body.email = 'valid@email.com'
-    req.body.agreement = false
+    req.body = {
+      email: 'valid@email.com',
+      agreement: false
+    }
     await verifySignUpMiddleware(req, res, next)
 
     expect(res.status).toBeCalledWith(400)
@@ -45,10 +51,12 @@ describe('VerifySignUp middleware', () => {
   })
 
   test('should abort if password is not confirmed', async () => {
-    req.body.email = 'valid@email.com'
-    req.body.agreement = true
-    req.body.password = 'password'
-    req.body.password_confirmation = 'diffpassword'
+    req.body = {
+      email: 'valid@email.com',
+      agreement: true,
+      password: 'password',
+      password_confirmation: 'diffpassword',
+    }
     await verifySignUpMiddleware(req, res, next)
 
     expect(res.status).toBeCalledWith(400)
@@ -56,10 +64,11 @@ describe('VerifySignUp middleware', () => {
   })
 
   test('should abort if user exists', async () => {
-    req.body.email = 'first@email.com'
+    req.body = mockUser
     req.body.agreement = true
-    req.body.password = 'password'
-    req.body.password_confirmation = 'password'
+    await AuthController.register(req, res)
+    expect(res.status).toBeCalledWith(204)
+
     await verifySignUpMiddleware(req, res, next)
 
     expect(res.status).toBeCalledWith(400)
@@ -67,11 +76,13 @@ describe('VerifySignUp middleware', () => {
   })
 
 
-  test('should abort if user exists', async () => {
-    req.body.email = 'nonexisting@email.com'
-    req.body.agreement = true
-    req.body.password = 'password'
-    req.body.password_confirmation = 'password'
+  test('should continue if user does not exist', async () => {
+    req.body = {
+      email: 'nonexistinguserAU743@email.com',
+      agreement: true,
+      password: 'password',
+      password_confirmation: 'password',
+    }
     await verifySignUpMiddleware(req, res, next)
 
     expect(next).toBeCalled()

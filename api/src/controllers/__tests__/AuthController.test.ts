@@ -63,9 +63,10 @@ describe('AuthController', () => {
     test('should return 200 and access token if user is found', async () => {
       const {name, surname, email} = mockUser
 
-      req.body.email = mockUser.email
-      req.body.password = mockUser.password
-
+      req.body = {
+        email: mockUser.email,
+        password: mockUser.password
+      }
       await login(req, res)
 
       expect(res.status).toBeCalledWith(200)
@@ -77,16 +78,19 @@ describe('AuthController', () => {
     })
 
     test('should return 404 if user is not found', async () => {
-      req.body.email = "wrongemail"
-      req.body.password = "wrongpass"
+      req.body = {
+        email: "wrongemail" + Math.random(),
+        password: "wrongpass" + Math.random(),
+      }
       await login(req, res)
       expect(res.status).toBeCalledWith(404)
     })
 
     test('should return 401 if password is incorrect', async () => {
-      req.body.email = mockUser.email
-      req.body.password = 'wrongpass'
-
+      req.body = {
+        email: mockUser.email,
+        password: "wrongpass"
+      }
       await login(req, res)
 
       expect(res.status).toBeCalledWith(401)
