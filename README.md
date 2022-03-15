@@ -20,6 +20,8 @@ make port-forward
 
 # Tests
 
+Note: before running tests create .env.testing file with testing env variables
+
 #### API microservice has tests, to run them use:
 ```
 cd ./api
