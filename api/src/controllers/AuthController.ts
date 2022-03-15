@@ -9,7 +9,7 @@ const login = async (req: Request, res: Response) => {
   const user: any = await User.findOne({email: req.body.email}).exec()
 
   if (!user) {
-    return res.status(404).send({message: "User Not found"})
+    return res.status(400).send({message: "Invalid credentials"})
   }
 
   const passwordIsValid = bcrypt.compareSync(
@@ -18,7 +18,7 @@ const login = async (req: Request, res: Response) => {
   )
 
   if (!passwordIsValid) {
-    return res.status(401).send({
+    return res.status(400).send({
       message: "Invalid credentials"
     })
   }
