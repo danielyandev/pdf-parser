@@ -15,5 +15,9 @@ export const MONGO_URI: string = "mongodb+srv://trialuser:trialpassword@cluster0
 
 /**
  * Apache tika microservice URL
+ *
+ * NOTE: changed to an external URL for testing purposes, cause microservice URL does not work
+ * TODO: change to microservice URL
  */
-export const APACHE_TIKA_URL: string = "http://localhost:9999/tika"
+// export const APACHE_TIKA_URL: string = "http://localhost:9999/tika"
+export const APACHE_TIKA_URL: string = "http://givemetext.okfnlabs.org/tika/tika"
