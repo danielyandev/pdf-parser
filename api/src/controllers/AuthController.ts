@@ -6,38 +6,32 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
 const login = async (req: Request, res: Response) => {
-  try {
-    const user: any = await User.findOne({email: req.body.email}).exec()
+  const user: any = await User.findOne({email: req.body.email}).exec()
 
-    if (!user) {
-      return res.status(404).send({message: "User Not found"})
-    }
-
-    const passwordIsValid = bcrypt.compareSync(
-      req.body.password,
-      user.password
-    )
-
-    if (!passwordIsValid) {
-      return res.status(401).send({
-        accessToken: null,
-        message: "Invalid credentials"
-      })
-    }
-
-    const token = jwt.sign({id: user._id}, JWT_TOKEN_SECRET_KEY, {
-      expiresIn: 86400 // 24 hours
-    })
-
-    const {name, surname, email} = user
-    res.status(200).send({
-      user: {name, surname, email},
-      access_token: token
-    })
-  } catch (e: any) {
-    return res.status(500).send({message: e.message})
+  if (!user) {
+    return res.status(404).send({message: "User Not found"})
   }
 
+  const passwordIsValid = bcrypt.compareSync(
+    req.body.password,
+    user.password
+  )
+
+  if (!passwordIsValid) {
+    return res.status(401).send({
+      message: "Invalid credentials"
+    })
+  }
+
+  const token = jwt.sign({id: user._id}, JWT_TOKEN_SECRET_KEY, {
+    expiresIn: 86400 // 24 hours
+  })
+
+  const {name, surname, email} = user
+  res.status(200).send({
+    user: {name, surname, email},
+    access_token: token
+  })
 }
 
 const register = async (req: Request, res: Response) => {
@@ -48,9 +42,9 @@ const register = async (req: Request, res: Response) => {
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8)
     })
-    res.send({message: "User was registered successfully!"})
+    res.status(204).send({message: "User was registered successfully!"})
   } catch (e: any) {
-    res.status(500).send({message: e.message})
+    res.status(400).send({message: e.message})
   }
 }
 
